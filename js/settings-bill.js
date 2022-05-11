@@ -8,73 +8,55 @@
 //var  selectedBtn=document.getElementById("Entry");
 //selectedBtn.addEventListener('click', update)
 
-const billAddButton = document.querySelector('.billAddButton');
-const callTotalSettings = document.querySelector('.callTotalSettings');
-const smsTotalSettings = document.querySelector('.smsTotalSettings');
-const totalSettings = document.querySelector('.totalSettings');
-const updateSettings = document.querySelector('.updateSettings');
+var settingsInstance = BillWithSettings();
+document
+  .querySelector(".updateSettings")
+  .addEventListener("click", function () {
+    settingsInstance.setCallCost(
+      Number(document.querySelector(".callCostSetting").value)
+    );
+    settingsInstance.setSmsCost(
+      Number(document.querySelector(".smsCostSetting").value)
+    );
+    //alert(sms);
+    settingsInstance.setWarningLevel(
+      Number(document.querySelector(".warningLevelSetting").value)
+    );
+    settingsInstance.setCriticalLevel(
+      Number(document.querySelector(".criticalLevelSetting").value)
+    );
+    changeColor();
+  });
 
-const globalVariables = {
-    callCost: 0,
-    smsCost: 0,
-    warningLevel: 0,
-    criticalLevel: 0,
-    theFinalTotalCall: 0,
-    theFinalTotalSms: 0
-};
+document.querySelector(".addition").addEventListener("click", function () {
+  //alert(settingsInstance.getCallCost());
+  var checkedRadioBtn = document.querySelector(
+    "input[name='billItemTypeWithSettings']:checked"
+  );
+  if (checkedRadioBtn) {
+    var billItemTypeWithSettings = checkedRadioBtn.value;
+  }
+  if (billItemTypeWithSettings === "sms") {
+    settingsInstance.sendSms();
+  } else if (billItemTypeWithSettings === "call") {
+    settingsInstance.makeCall();
+  }
+  document.querySelector(".callTotalSettings").innerHTML = settingsInstance
+    .getTotalCallCost()
+    .toFixed(2);
+  document.querySelector(".smsTotalSettings").innerHTML = settingsInstance
+    .getTotalSmsCost()
+    .toFixed(2);
 
-const convertToNumber = (string) => {
-    return Number(string).toFixed(2);
+  document.querySelector(".totalSettings").innerHTML = settingsInstance
+    .getTotalCost()
+    .toFixed(2);
+  changeColor();
+});
+function changeColor() {
+  document.querySelector(".totalSettings").classList.remove("danger");
+  document.querySelector(".totalSettings").classList.remove("warning");
+  document
+    .querySelector(".totalSettings")
+    .classList.add(settingsInstance.totalClassName());
 }
-
-function updateCost(){
-    const theCallCostValue = document.querySelector('.callCostSetting').value;
-    const theSmsCostValue = document.querySelector('.smsCostSetting').value;
-    const theWarningValue = document.querySelector('.warningLevelSetting').value;
-    const theCriticalValue = document.querySelector('.criticalLevelSetting').value;
-
-    if(theCallCostValue)
-        globalVariables.callCost = convertToNumber(theCallCostValue);
-    if(theSmsCostValue)
-        globalVariables.smsCost = convertToNumber(theSmsCostValue);
-    if(theWarningValue)
-        globalVariables.warningLevel = convertToNumber(theWarningValue);
-    if(theCriticalValue)
-        globalVariables.criticalLevel = convertToNumber(theCriticalValue);  
-    
-    totalSettings.classList.remove('warning');
-    totalSettings.classList.remove('danger');
-}
-
-const calculateTotalBill = () => Number(globalVariables.theFinalTotalCall) + Number(globalVariables.theFinalTotalSms);
-
-const setTotalSettings = () => {
-    callTotalSettings.innerHTML = convertToNumber(globalVariables.theFinalTotalCall);
-    smsTotalSettings.innerHTML = convertToNumber(globalVariables.theFinalTotalSms);
-    
-    const calculatedTotalBill = calculateTotalBill();
-    
-    totalSettings.classList.remove('warning');
-    totalSettings.classList.remove('danger');
-
-    if(calculatedTotalBill >= globalVariables.warningLevel && calculatedTotalBill < globalVariables.criticalLevel)
-        totalSettings.classList.add('warning');
-    if(calculatedTotalBill >= globalVariables.criticalLevel)
-        totalSettings.classList.add('danger');
-    totalSettings.innerHTML = 'R'+ convertToNumber(calculatedTotalBill);
-}
-
-function addBill() {
-    const radioBtnValue = document.querySelector("input[name='billItemTypeWithSettings']:checked").value;
-    const totalNumber = calculateTotalBill();
-
-    if(totalNumber < globalVariables.criticalLevel){
-        if (radioBtnValue === "call") 
-            globalVariables.theFinalTotalCall += Number(globalVariables.callCost);
-        if (radioBtnValue === "sms") 
-            globalVariables.theFinalTotalSms += Number(globalVariables.smsCost); 
-    }
-    setTotalSettings();
-}
-billAddButton.addEventListener('click', addBill);
-updateSettings.addEventListener('click', updateCost);

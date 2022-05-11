@@ -14,7 +14,7 @@ var billString = document.querySelector('.billString');
     var billArray =  billString.value.split(",");
     var callBill = 0;
     for(var i = 0; i < billArray.length; i++){
-      var bill = billArray[i].trim();
+      var bill = billArray[i].trim().toLowerCase();
       if(bill === 'call'){
         callBill += 2.75;
       }else if(bill === 'sms'){
