@@ -92,7 +92,7 @@ if(totalBillCost< criticalLevel.value){
         document.querySelector(".totalSettings").classList.add("danger");
 
     }
-     if (totalBillCost > warningLevel.value && totalBillCost < criticalLevel.value) {
+     if (totalBillCost >= warningLevel.value && totalBillCost < criticalLevel.value) {
         document.querySelector(".totalSettings").classList.add("warning");
 
     } 
