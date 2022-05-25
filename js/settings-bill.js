@@ -20,6 +20,7 @@ updateSettings.addEventListener('click', function(){
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
+    totalSettings.classList.add('danger');
 });
 
 billAddButton.addEventListener('click', function(){
@@ -31,14 +32,14 @@ billAddButton.addEventListener('click', function(){
 
     if(radioBtnValue === 'call'){
         aBill.makeCall();
-        callTotalSettings.innerHTML = aBill.getTotalCallCost();
+        callTotalSettings.innerHTML = aBill.getTotalCallCost().toFixed(2);
     }
 
     if(radioBtnValue === 'sms'){
         aBill.sendSms();
-        smsTotalSettings.innerHTML = aBill.getTotalSmsCost();
+        smsTotalSettings.innerHTML = aBill.getTotalSmsCost().toFixed(2);
     }
-    totalSettings.innerHTML = aBill.getTotalCost();
+    totalSettings.innerHTML = aBill.getTotalCost().toFixed(2);
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
