@@ -47,7 +47,7 @@ billAddButton.addEventListener('click', function(){
 
 
 
-/*
+
 // get a reference to the sms or call radio buttons
 //get a reference to the add button
 // get refences to all the settings fields
@@ -56,6 +56,7 @@ billAddButton.addEventListener('click', function(){
 // create a variables that will keep track of all three totals.
 //var  selectedBtn=document.getElementById("Entry");
 //selectedBtn.addEventListener('click', update)
+/*
 const updateSettingsBttn = document.querySelector('.updateSettings');
 const addButton = document.querySelector('.addButton');
 
@@ -77,7 +78,8 @@ var totalBillCost = 0;
    // let smsValue = Number(sms.value);
    // let warning = Number(warningLevel.value);
    // let critical = Number(criticalLevel.value);
-
+*/
+/*
 function updateCosts() {
 
     let call = document.querySelector(".callCostSetting");
@@ -152,3 +154,4 @@ if(totalBillCost< criticalLevel.value){
 }
 addButton.addEventListener('click', billSettings);
 updateSettingsBttn.addEventListener('click', updateCosts);
+*/
