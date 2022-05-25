@@ -1,4 +1,4 @@
-const billAddButton = document.querySelector('.billAddButton');
+const billAddButton = document.querySelector('.addButton');
 const updateSettings = document.querySelector('.updateSettings');
 
 let aBill = settingBillFunc();
