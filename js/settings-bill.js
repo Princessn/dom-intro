@@ -48,6 +48,7 @@ billAddButton.addEventListener('click', function(){
 
 
 
+
 // get a reference to the sms or call radio buttons
 //get a reference to the add button
 // get refences to all the settings fields
