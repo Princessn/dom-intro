@@ -20,7 +20,7 @@ updateSettings.addEventListener('click', function(){
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
-    totalSettings.classList.add('danger');
+    
 });
 
 billAddButton.addEventListener('click', function(){
