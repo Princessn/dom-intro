@@ -1,22 +1,19 @@
 const billAddButton = document.querySelector('.addButton');
 const updateSettings = document.querySelector('.updateSettings');
 
-let aBill = settingBillFunc();
+let billSetting = settingBillFunc();
 
 updateSettings.addEventListener('click', function(){
-    const theCallCostValue = document.querySelector('.callCostSetting').value;
-    const theSmsCostValue = document.querySelector('.smsCostSetting').value;
-    const theWarningValue = document.querySelector('.warningLevelSetting').value;
-    const theCriticalValue = document.querySelector('.criticalLevelSetting').value; 
+    const CallCostValue = document.querySelector('.callCostSetting').value;
+    const SmsCostValue = document.querySelector('.smsCostSetting').value;
+    const WarningValue = document.querySelector('.warningLevelSetting').value;
+    const CriticalValue = document.querySelector('.criticalLevelSetting').value; 
     const totalSettings = document.querySelector('.totalSettings');
 
-    aBill.setCostOfCall(Number(theCallCostValue));
-    
-    aBill.setCostOfSms(Number(theSmsCostValue));
-
-    aBill.setWarningLevel(Number(theWarningValue));
-
-    aBill.setCriticalLevel(Number(theCriticalValue));
+    billSetting.setCostOfCall(Number(CallCostValue));
+    billSetting.setCostOfSms(Number(SmsCostValue));
+    billSettingl.setWarningLevel(Number(WarningValue));
+    billSetting.setCriticalLevel(Number(CriticalValue));
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
@@ -31,19 +28,19 @@ billAddButton.addEventListener('click', function(){
     const totalSettings = document.querySelector('.totalSettings');
 
     if(radioBtnValue === 'call'){
-        aBill.makeCall();
-        callTotalSettings.innerHTML = aBill.getTotalCallCost().toFixed(2);
+        billSetting.makeCall();
+        callTotalSettings.innerHTML = billSetting.getTotalCallCost().toFixed(2);
     }
 
     if(radioBtnValue === 'sms'){
-        aBill.sendSms();
-        smsTotalSettings.innerHTML = aBill.getTotalSmsCost().toFixed(2);
+        billSetting.sendSms();
+        smsTotalSettings.innerHTML = billSetting.getTotalSmsCost().toFixed(2);
     }
-    totalSettings.innerHTML = aBill.getTotalCost().toFixed(2);
+    totalSettings.innerHTML = billSetting.getTotalCost().toFixed(2);
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
-    totalSettings.classList.add(aBill.totalClassName());
+    totalSettings.classList.add(billSetting.totalClassName());
 });
 
 
