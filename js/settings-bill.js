@@ -38,7 +38,7 @@ billAddButton.addEventListener('click', function(){
         aBill.sendSms();
         smsTotalSettings.innerHTML = aBill.getTotalSmsCost();
     }
-    totalSettings.innerHTML = 'R'+aBill.getTotalCost();
+    totalSettings.innerHTML = aBill.getTotalCost();
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
