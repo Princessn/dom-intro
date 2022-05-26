@@ -16,7 +16,7 @@ updateSettings.addEventListener('click', function(){
     aBill.setCriticalLevel(Number(CriticalValue));
 
     totalSettings.classList.remove('warning');
-    totalSettings.classList.remove('danger');
+    totalSettings.classList.remove('critical');
     
 });
 
@@ -39,7 +39,7 @@ billAddButton.addEventListener('click', function(){
     totalSettings.innerHTML = aBill.getTotalCost().toFixed(2);
 
     totalSettings.classList.remove('warning');
-    totalSettings.classList.remove('danger');
+    totalSettings.classList.remove('critical');
     totalSettings.classList.add(aBill.totalClassName());
 });
 
