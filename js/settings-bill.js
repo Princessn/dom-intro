@@ -1,23 +1,25 @@
-const billAddButton = document.querySelector('.addButton');
+const billAddButton = document.querySelector('.billAddButton');
 const updateSettings = document.querySelector('.updateSettings');
 
-let billSetting = settingBillFunc();
+let aBill = settingBillFunc();
 
 updateSettings.addEventListener('click', function(){
-    const CallCostValue = document.querySelector('.callCostSetting').value;
-    const SmsCostValue = document.querySelector('.smsCostSetting').value;
-    const WarningValue = document.querySelector('.warningLevelSetting').value;
-    const CriticalValue = document.querySelector('.criticalLevelSetting').value; 
+    const theCallCostValue = document.querySelector('.callCostSetting').value;
+    const theSmsCostValue = document.querySelector('.smsCostSetting').value;
+    const theWarningValue = document.querySelector('.warningLevelSetting').value;
+    const theCriticalValue = document.querySelector('.criticalLevelSetting').value; 
     const totalSettings = document.querySelector('.totalSettings');
 
-    billSetting.setCostOfCall(Number(CallCostValue));
-    billSetting.setCostOfSms(Number(SmsCostValue));
-    billSettingl.setWarningLevel(Number(WarningValue));
-    billSetting.setCriticalLevel(Number(CriticalValue));
+    aBill.setCostOfCall(Number(theCallCostValue));
+    
+    aBill.setCostOfSms(Number(theSmsCostValue));
+
+    aBill.setWarningLevel(Number(theWarningValue));
+
+    aBill.setCriticalLevel(Number(theCriticalValue));
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
-    
 });
 
 billAddButton.addEventListener('click', function(){
@@ -28,21 +30,20 @@ billAddButton.addEventListener('click', function(){
     const totalSettings = document.querySelector('.totalSettings');
 
     if(radioBtnValue === 'call'){
-        billSetting.makeCall();
-        callTotalSettings.innerHTML = billSetting.getTotalCallCost().toFixed(2);
+        aBill.makeCall();
+        callTotalSettings.innerHTML = aBill.getTotalCallCost().toFixed(2);
     }
 
     if(radioBtnValue === 'sms'){
-        billSetting.sendSms();
-        smsTotalSettings.innerHTML = billSetting.getTotalSmsCost().toFixed(2);
+        aBill.sendSms();
+        smsTotalSettings.innerHTML = aBill.getTotalSmsCost().toFixed(2);
     }
-    totalSettings.innerHTML = billSetting.getTotalCost().toFixed(2);
+    totalSettings.innerHTML = 'R'+aBill.getTotalCost().toFixed(2);
 
     totalSettings.classList.remove('warning');
     totalSettings.classList.remove('danger');
-    totalSettings.classList.add(billSetting.totalClassName());
+    totalSettings.classList.add(aBill.totalClassName());
 });
-
 
 
 
