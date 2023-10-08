@@ -20,7 +20,7 @@ html {
 
 body {
   margin: 0;
-  background-image: url(image.jpg);
+  background: url(image.jpg);
 }
 
 /* HTML5 display definitions
